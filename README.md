@@ -27,7 +27,7 @@ npm install apollo-boost apollo-server-express apollo-link-context vue-apollo gr
 npm install -g graphcool
 ```
 
-###Create Server & Link it to Your Application
+### Create Server & Link it to Your Application
 ``` bash
 graphcool init
 ```
@@ -37,13 +37,13 @@ Now set the HTTP end point in the apollo-client.js file to the graphcool Simple 
 graphcool endpoints
 ```
 
-###Create Your Initial Schema
+### Create Your Initial Schema
 Create your initial schema in the project.graphcool file and then push the changes to the graphcool server.
 ``` bash
  graphcool push
 ```
 
-###Setup User Account Authorization
+### Setup User Account Authorization
 Open your GraphCool console
 ``` bash
  graphcool console
@@ -56,7 +56,7 @@ Do a pull request to your GraphCool server to bring down the schema changes that
  graphcool pull
 ```
 
-###Other GraphCool Commands
+### Other GraphCool Commands
 
 Usage: graphcool [command]
 
