@@ -21,6 +21,33 @@ export const ALL_LINKS_QUERY = gql`
   }
 `
 
+export const ALL_LINKS_SEARCH_QUERY = gql`
+  query AllLinksSearchQuery($searchText: String!) {
+    allLinks(filter: {
+      OR: [{
+        url_contains: $searchText
+      }, {
+        description_contains: $searchText
+      }]
+    }) {
+      id
+      url
+      description
+      createdAt
+      postedBy {
+        id
+        name
+      }
+      votes {
+        id
+        user {
+          id
+        }
+      }
+    }
+  }
+`
+
 // Two mutations defined at once!
 // the execution order is always from top to bottom.
 // CreateUser mutation will be executed before the signinUser mutation.
