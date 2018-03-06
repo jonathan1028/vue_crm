@@ -13,8 +13,7 @@
 </template>
 
 <script>
-import { ALL_LINKS_QUERY, NEW_LINKS_SUBSCRIPTION } from '../constants/graphql'
-// import { ALL_LINKS_QUERY } from '../constants/graphql'
+import { ALL_LINKS_QUERY, NEW_LINKS_SUBSCRIPTION, NEW_VOTES_SUBSCRIPTION } from '../constants/graphql'
 import LinkItem from './LinkItem'
 
 export default {
@@ -32,21 +31,37 @@ export default {
     allLinks: {
       query: ALL_LINKS_QUERY,
       subscribeToMore:
-      [{
-        document: NEW_LINKS_SUBSCRIPTION,
-        // mutate the previous result
-        updateQuery: (previous, { subscriptionData }) => {
-          const newAllLinks = [
-            subscriptionData.data.Link.node,
-            ...previous.allLinks
-          ]
-          const result = {
-            ...previous,
-            allLinks: newAllLinks
+      [
+        {
+          document: NEW_LINKS_SUBSCRIPTION,
+          // mutate the previous result
+          updateQuery: (previous, { subscriptionData }) => {
+            const newAllLinks = [
+              subscriptionData.data.Link.node,
+              ...previous.allLinks
+            ]
+            const result = {
+              ...previous,
+              allLinks: newAllLinks
+            }
+            return result
           }
-          return result
+        },
+        {
+          document: NEW_VOTES_SUBSCRIPTION,
+          updateQuery: (previous, { subscriptionData }) => {
+            const votedLinkIndex = previous.allLinks.findIndex(link => link.id === subscriptionData.data.Vote.node.link.id)
+            const link = subscriptionData.data.Vote.node.link
+            const newAllLinks = previous.allLinks.slice()
+            newAllLinks[votedLinkIndex] = link
+            const result = {
+              ...previous,
+              allLinks: newAllLinks
+            }
+            return result
+          }
         }
-      }]
+      ]
     }
   }
 }
