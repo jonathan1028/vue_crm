@@ -19,7 +19,7 @@ npm run dev
 ## Setup Apollo & GraphQL
 
 ``` bash
-npm install --save apollo-boost apollo-server-express apollo-link-context vue-apollo graphql graphql-tools cors subscriptions-transport-ws apollo-link-ws
+npm install --save apollo-boost apollo-server-express apollo-link-context vue-apollo graphql graphql-tools cors subscriptions-transport-ws apollo-link-ws lodash
 ```
 ## Setup Back-End with GraphCool
 ### Installation

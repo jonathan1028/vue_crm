@@ -15,11 +15,17 @@
 
 <script>
 import { timeDifferenceForDate } from '../utils'
-import { GC_USER_ID } from '../constants/settings'
+import { GC_USER_ID, LINKS_PER_PAGE } from '../constants/settings'
 import { ALL_LINKS_QUERY, CREATE_VOTE_MUTATION } from '../constants/graphql'
 
 export default {
   name: 'LinkItem',
+  // data property added for pagination
+  data () {
+    return {
+      linksPerPage: LINKS_PER_PAGE
+    }
+  },
   computed: {
     userId () {
       return this.$root.$data.userId
@@ -32,7 +38,9 @@ export default {
       }
     }
   },
-  props: ['link', 'index'],
+  // Since you added pageNumber as one of the props on LinkItem,
+  // you need to add it to the props array of the LinkItem component.
+  props: ['link', 'index', 'pageNumber'],
   methods: {
     timeDifferenceForDate,
     voteForLink () {

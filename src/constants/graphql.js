@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export const ALL_LINKS_QUERY = gql`
-  query AllLinksQuery {
-    allLinks {
+  query AllLinksQuery($first: Int, $skip: Int, $orderBy: LinkOrderBy) {
+    allLinks(first: $first, skip: $skip, orderBy: $orderBy) {
       id
       createdAt
       url
@@ -17,6 +17,10 @@ export const ALL_LINKS_QUERY = gql`
           id
         }
       }
+    }
+    # gives you access to the count of the links
+    _allLinksMeta {
+      count
     }
   }
 `
