@@ -120,6 +120,7 @@ export const CREATE_VOTE_MUTATION = gql`
     createVote(userId: $userId, linkId: $linkId) {
       id
       link {
+        id
         votes {
           id
           user {
@@ -161,9 +162,8 @@ export const NEW_LINKS_SUBSCRIPTION = gql`
 
 export const NEW_VOTES_SUBSCRIPTION = gql`
   subscription {
-    Vote(filter: {
-      mutation_in: [CREATED]
-    }) {
+    Vote(filter: { mutation_in: [CREATED] }) 
+    {
       node {
         id
         link {

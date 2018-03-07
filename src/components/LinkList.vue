@@ -4,10 +4,11 @@
       <h4 v-if="loading">Loading...</h4>
       <!-- this creates a link variable and index variable for each item in the list -->
       <link-item
-        v-for="(link, index) in allLinks"
+        v-for="(link, index) in orderedLinks"
         :key="link.id"
         :link="link"
         :index="index"
+        :pageNumber="pageNumber">
         >
       </link-item>
     </div>
@@ -40,8 +41,10 @@ export default {
     // Added computed methods are for pagination
     orderedLinks: function () {
       if (this.$route.path.includes('top')) {
+        console.log('Hi')
         return _.orderBy(this.allLinks, 'votes.length').reverse()
       } else {
+        console.log('Hi 2')
         return this.allLinks
       }
     },

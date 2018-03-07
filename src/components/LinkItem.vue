@@ -26,6 +26,9 @@ export default {
       linksPerPage: LINKS_PER_PAGE
     }
   },
+  // Since you added pageNumber as one of the props on LinkItem,
+  // you need to add it to the props array of the LinkItem component.
+  props: ['link', 'index', 'pageNumber'],
   computed: {
     userId () {
       return this.$root.$data.userId
@@ -38,9 +41,6 @@ export default {
       }
     }
   },
-  // Since you added pageNumber as one of the props on LinkItem,
-  // you need to add it to the props array of the LinkItem component.
-  props: ['link', 'index', 'pageNumber'],
   methods: {
     timeDifferenceForDate,
     voteForLink () {
