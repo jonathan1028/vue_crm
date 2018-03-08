@@ -65,14 +65,14 @@ export default {
   // you are going to calculate the list of links to be rendered in a separate method.
   methods: {
     // All methods here are related to pagination
-    getLinksToRender (isNewPage) {
-      if (isNewPage) {
-        return this.$apollo.queries.allLinks
-      }
-      const rankedLinks = this.$apollo.queries.allLinks.slice()
-      rankedLinks.sort((l1, l2) => l2.votes.length - l1.votes.length)
-      return rankedLinks
-    },
+    // getLinksToRender (isNewPage) {
+    //   if (isNewPage) {
+    //     return this.$apollo.queries.allLinks
+    //   }
+    //   const rankedLinks = this.$apollo.queries.allLinks.slice()
+    //   rankedLinks.sort((l1, l2) => l2.votes.length - l1.votes.length)
+    //   return rankedLinks
+    // },
     nextPage () {
       const page = parseInt(this.$route.params.page, 10)
       if (page < this.count / LINKS_PER_PAGE) {
@@ -91,6 +91,10 @@ export default {
   apollo: {
     allLinks: {
       query: ALL_LINKS_QUERY,
+      // You’ve set the variables to a function which runs before the query is executed.
+      // This allows you to retrieve the information about the current page
+      // from the router (this.$route.params.page) and use it to calculate
+      // the chunk of links that you retrieve with first and skip.
       variables () {
         const page = parseInt(this.$route.params.page, 10)
         const isNewPage = this.$route.path.includes('new')

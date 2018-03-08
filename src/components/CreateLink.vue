@@ -51,7 +51,6 @@ export default {
         update: (store, { data: { createLink } }) => {
           const data = store.readQuery({
             query: ALL_LINKS_QUERY,
-            // variables added for pagination
             variables: {
               first: 5,
               skip: 0,
@@ -61,7 +60,6 @@ export default {
           data.allLinks.push(createLink)
           store.writeQuery({
             query: ALL_LINKS_QUERY,
-            // variables added for pagination
             variables: {
               first: 5,
               skip: 0,

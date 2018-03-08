@@ -68,7 +68,12 @@ export default {
     updateStoreAfterVote (store, createVote, linkId) {
       // You start by reading the current state of the cached data for the ALL_LINKS_QUERY from the store.
       const data = store.readQuery({
-        query: ALL_LINKS_QUERY
+        query: ALL_LINKS_QUERY,
+        variables: {
+          first: 5,
+          skip: 0,
+          orderBy: 'createdAt_DESC'
+        }
       })
 
       // Now you’re retrieving the link that the user just voted for from that list.
@@ -77,7 +82,15 @@ export default {
       votedLink.votes = createVote.link.votes
 
       // Finally, you take the modified data and write it back into the store.
-      store.writeQuery({ query: ALL_LINKS_QUERY, data })
+      store.writeQuery({
+        query: ALL_LINKS_QUERY,
+        data,
+        variables: {
+          first: 5,
+          skip: 0,
+          orderBy: 'createdAt_DESC'
+        }
+      })
 
       // The update method will now be executed and ensure that the store gets updated properly
       // after a mutation is performed.
