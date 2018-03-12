@@ -21,6 +21,13 @@ npm run dev
 ``` bash
 npm install --save apollo-boost apollo-server-express apollo-link-context vue-apollo graphql graphql-tools cors subscriptions-transport-ws apollo-link-ws lodash
 ```
+## Add styling dependencies
+
+``` bash
+npm install --save bulma
+npm install node-sass sass-loader
+```
+
 ## Setup Back-End with GraphCool
 ### Installation
 ``` bash
