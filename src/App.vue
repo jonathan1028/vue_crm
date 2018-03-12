@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+     <navbar :show="true"></navbar>
     <div class="center w85">
       <app-header></app-header>
       <div class='ph3 pv1 background-gray'>
@@ -22,6 +23,7 @@
 import AppHeader from './components/AppHeader'
 import gql from 'graphql-tag'
 import Post from './components/Post.vue'
+import Navbar from './components/Navbar.vue'
 
 const FeedQuery = gql`
   query allPosts {
@@ -36,7 +38,7 @@ export default {
   name: 'app',
   components: {
     // LinkList, StaticLinkList
-    Post, AppHeader
+    Post, AppHeader, Navbar
   },
   data () {
     return {
@@ -55,7 +57,10 @@ export default {
 </script>
 
 <style>
-  body {
+  html {
+    background-color: whitesmoke;
+  }
+  /* body {
     margin: 0;
     padding: 0;
     font-family: Verdana, Geneva, sans-serif;
@@ -90,5 +95,5 @@ export default {
     border-color: buttonface;
     cursor: pointer;
     max-width: 250px;
-  }
+  } */
 </style>

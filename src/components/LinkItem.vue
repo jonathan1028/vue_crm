@@ -101,12 +101,12 @@ export default {
 </script>
 
 <style scoped>
-  .upvote {
+  /* .upvote {
     cursor: pointer;
   }
 
   .link {
     text-decoration: none;
     color: black;
-  }
+  } */
 </style>
