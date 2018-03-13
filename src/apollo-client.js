@@ -12,13 +12,13 @@ import { getMainDefinition } from 'apollo-utilities'
 const httpLink = new HttpLink({
   // You should use an absolute URL here
   // uri: 'http://localhost:4000/graphql'
-  uri: 'https://api.graph.cool/simple/v1/cje80a66w2io80169t9xekvw3'
+  uri: 'https://api.graph.cool/simple/v1/cjeq87ww03gm801881tjhtlyu'
 })
 
 // Create a WebSocket link:
 const wsLink = new WebSocketLink({
   // uri: `ws://localhost:5000/`,
-  uri: 'wss://subscriptions.graph.cool/v1/cje80a66w2io80169t9xekvw3',
+  uri: 'wss://subscriptions.graph.cool/v1/cjeq87ww03gm801881tjhtlyu',
   options: {
     reconnect: true,
     // carry login state (should use secure websockets (wss) when using this)
