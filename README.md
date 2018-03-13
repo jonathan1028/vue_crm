@@ -25,7 +25,6 @@ npm install --save apollo-boost apollo-server-express apollo-link-context vue-ap
 
 ``` bash
 npm install --save bulma
-npm install node-sass sass-loader
 ```
 
 ## Setup Back-End with GraphCool
