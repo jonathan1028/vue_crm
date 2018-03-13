@@ -1,20 +1,28 @@
 <template>
-  <div class="flex pa1 justify-between nowrap orange">
-    <div class="flex flex-fixed black">
-      <div class="fw7 mr1">Hacker News</div>
-      <router-link to="/" class="ml1 no-underline black">new</router-link>
-      <div class="ml1">|</div>
-      <router-link to="/top" class="ml1 no-underline black">top</router-link>
-      <div class="ml1">|</div>
-      <router-link to="/search" class="ml1 no-underline black">search</router-link>
-      <div class="flex" v-if="userId">
-        <div class="ml1">|</div>
-        <router-link to="/create" class="ml1 no-underline black">submit</router-link>
-      </div>
-    </div>
-    <div class="flex flex-fixed">
-      <div v-if="userId" class="ml1 pointer black" @click="logout()">logout</div>
-      <router-link v-else to="/login" class="ml1 no-underline black">login</router-link>
+  <div class="header">
+    <div class="header-content">
+        <div class="main-nav">
+          <!-- Logo -->
+          <div class="logo">Hacker News</div>
+          <!-- Main navigation -->
+          <div class="nav-buttons">
+            <router-link to="/">new</router-link>
+            <div>|</div>
+            <router-link to="/top">top</router-link>
+            <div>|</div>
+            <router-link to="/search">search</router-link>
+            <!-- Logged in navigation -->
+            <div class="authenticated-nav" v-if="userId">
+              <div>|</div>
+              <router-link to="/create">submit</router-link>
+            </div>
+          </div>
+        </div>
+        <!-- Login buttons   -->
+        <div class="login is-link">
+          <div v-if="userId" @click="logout()">logout</div>
+          <router-link v-else to="/login">login</router-link>
+        </div>
     </div>
   </div>
 </template>
@@ -41,3 +49,47 @@ export default {
   }
 }
 </script>
+
+<style>
+.header{
+  position: fixed;
+  width: 100%;
+  height: 40px;
+  background-color: white;
+  top: 0;
+}
+.header-content{
+  max-width: 90%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo{
+  margin-right: 1em;
+}
+.main-nav{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.nav-buttons{
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+}
+.authenticated-nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.login{
+  color: #3273dc;
+  cursor: pointer;
+}
+.login:hover {
+    color: gray;
+}
+
+</style>

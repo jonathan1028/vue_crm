@@ -1,57 +1,20 @@
 <template>
   <div id="app">
-     <navbar :show="true"></navbar>
-    <div class="center w85">
       <app-header></app-header>
-      <div class='ph3 pv1 background-gray'>
+      <div class="main-content">
         <router-view></router-view>
+        <!-- Standard page layout code -->
       </div>
-    </div>
-    <h1>Vue & Apollo Test</h1>
-    <div>{{hello}}</div>
-    <ul>
-    <h2>Posts</h2>
-    <li v-for="post in allPosts" :key="post.id">
-      <post :post='post' class="post" />
-    </li>
-    </ul>
-
   </div>
 </template>
 
 <script>
 import AppHeader from './components/AppHeader'
-import gql from 'graphql-tag'
-import Post from './components/Post.vue'
-import Navbar from './components/Navbar.vue'
 
-const FeedQuery = gql`
-  query allPosts {
-    allPosts(orderBy: createdAt_DESC) {
-      id
-      imageUrl
-      description
-    }
-  }
-`
 export default {
   name: 'app',
   components: {
-    // LinkList, StaticLinkList
-    Post, AppHeader, Navbar
-  },
-  data () {
-    return {
-      hello: 'Hello Vue',
-      allPosts: {},
-      loading: 0
-    }
-  },
-  apollo: {
-    allPosts: {
-      query: FeedQuery,
-      loadingKey: 'loading'
-    }
+    AppHeader
   }
 }
 </script>
@@ -59,6 +22,10 @@ export default {
 <style>
   html {
     background-color: whitesmoke;
+  }
+  .main-content {
+    max-width: 90%;
+    margin: 4em auto;
   }
   /* body {
     margin: 0;

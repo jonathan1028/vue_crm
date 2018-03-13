@@ -1,5 +1,5 @@
 <template>
-  <div class="flex mt2 items-start">
+  <div class="link-item">
     <div class="flex items-center">
       <span class="gray">{{linkNumber}}.</span>
       <div v-if="userId" class="ml1 gray f11 upvote" @click="voteForLink()">▲</div>
@@ -101,6 +101,11 @@ export default {
 </script>
 
 <style scoped>
+  .link-item{
+    margin: 0.5em auto;
+    border-color: black;
+    background-color: white;
+  }
   /* .upvote {
     cursor: pointer;
   }
