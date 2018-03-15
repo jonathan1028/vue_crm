@@ -3,24 +3,34 @@
     <div class="flex flex-column mt3">
       <input
         class="mb2"
-        v-model="displayName"
+        v-model="name"
         type="text"
         placeholder="Person's display name">
     </div>
     <button @click="createLink()">Submit</button>
+    <div>
+      People
+      <li
+        v-for="person in allPersons"
+        :key="person.id"
+      >
+        {{person.displayName}}
+      </li>
+    </div>
   </div>
 </template>
 
 <script>
 // import { ALL_LINKS_QUERY, CREATE_LINK_MUTATION } from '../constants/graphql'
-import { CREATE_PERSON_MUTATION } from '../constants/graphql'
+import { ALL_PEOPLE_QUERY, CREATE_PERSON_MUTATION } from '../constants/graphql'
 import { GC_USER_ID } from '../constants/settings'
 
 export default {
   name: 'People',
   data () {
     return {
-      displayName: ''
+      name: '',
+      allPersons: []
     }
   },
   methods: {
@@ -32,14 +42,15 @@ export default {
         return
       }
 
-      // Assigns data
-      const newDisplayName = this.displayName
+      // Assign data from form inputs
+      const newDisplayName = this.name
       // Clears out data??
-      this.displayName = ''
+      this.name = ''
 
       this.$apollo.mutate({
         mutation: CREATE_PERSON_MUTATION,
         variables: {
+          // Sets variables in graphql.js
           displayName: newDisplayName,
           postedById
         }
@@ -69,6 +80,12 @@ export default {
         console.error(error)
         this.newDisplayName = newDisplayName
       })
+    }
+  },
+  apollo: {
+    // allPerson here pulls the data from ALL_PEOPLE_QUERY and assigns it to the data(){} object at the top of script
+    allPersons: {
+      query: ALL_PEOPLE_QUERY
     }
   }
 }

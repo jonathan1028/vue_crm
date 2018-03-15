@@ -26,15 +26,15 @@ export const ALL_LINKS_QUERY = gql`
   }
 `
 
-// export const ALL_PEOPLE_QUERY = gql`
-//   query AllPeopleQuery() {
-//     allLinks() {
-//       id
-//       createdAt
-//       displayName
-//     }
-//   }
-// `
+export const ALL_PEOPLE_QUERY = gql`
+  query AllPersonsQuery {
+    allPersons {
+      id
+      createdAt
+      displayName
+    }
+  }
+`
 
 export const ALL_LINKS_SEARCH_QUERY = gql`
   query AllLinksSearchQuery($searchText: String!) {
