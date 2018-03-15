@@ -1,85 +1,39 @@
 <template>
   <div>
-    <div class="flex flex-column mt3">
-      <input
-        class="mb2"
-        v-model="name"
-        type="text"
-        placeholder="Person's display name">
-    </div>
-    <button @click="createLink()">Submit</button>
+    <create-person></create-person>
+    <h2>People</h2>
     <div>
-      People
-      <li
-        v-for="person in allPersons"
-        :key="person.id"
-      >
-        {{person.displayName}}
-      </li>
+      <table class="table">
+        <tr>
+          <th>Name</th>
+          <th>2</th>
+          <th>3</th>
+        </tr>
+        <tr
+          v-for="person in allPersons"
+          :key="person.id"
+        >
+          <td>{{person.displayName}}</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
 
 <script>
-// import { ALL_LINKS_QUERY, CREATE_LINK_MUTATION } from '../constants/graphql'
-import { ALL_PEOPLE_QUERY, CREATE_PERSON_MUTATION } from '../constants/graphql'
-import { GC_USER_ID } from '../constants/settings'
+import { ALL_PEOPLE_QUERY } from '../constants/graphql'
+import CreatePerson from './CreatePerson'
 
 export default {
   name: 'People',
+  components: {
+    CreatePerson
+  },
   data () {
     return {
-      name: '',
       allPersons: []
-    }
-  },
-  methods: {
-    createLink () {
-      // Checks permissions
-      const postedById = localStorage.getItem(GC_USER_ID)
-      if (!postedById) {
-        console.error('No user logged in')
-        return
-      }
-
-      // Assign data from form inputs
-      const newDisplayName = this.name
-      // Clears out data??
-      this.name = ''
-
-      this.$apollo.mutate({
-        mutation: CREATE_PERSON_MUTATION,
-        variables: {
-          // Sets variables in graphql.js
-          displayName: newDisplayName,
-          postedById
-        }
-        // update: (store, { data: { createLink } }) => {
-        //   const data = store.readQuery({
-        //     query: ALL_LINKS_QUERY,
-        //     variables: {
-        //       first: 5,
-        //       skip: 0,
-        //       orderBy: 'createdAt_DESC'
-        //     }
-        //   })
-        //   data.allLinks.push(createLink)
-        //   store.writeQuery({
-        //     query: ALL_LINKS_QUERY,
-        //     variables: {
-        //       first: 5,
-        //       skip: 0,
-        //       orderBy: 'createdAt_DESC'
-        //     },
-        //     data
-        //   })
-        // }
-      }).then((data) => {
-        this.$router.push({path: '/'})
-      }).catch((error) => {
-        console.error(error)
-        this.newDisplayName = newDisplayName
-      })
     }
   },
   apollo: {
@@ -90,3 +44,9 @@ export default {
   }
 }
 </script>
+
+<style>
+  .table {
+    width: 100%;
+  }
+</style>
