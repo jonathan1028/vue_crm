@@ -158,6 +158,21 @@ export const CREATE_VOTE_MUTATION = gql`
     }
   }
 `
+// ----------------------------------------- Subscriptions ---------------------------------------------
+
+export const NEW_PEOPLE_SUBSCRIPTION = gql`
+  subscription {
+    Person(filter: {
+      mutation_in: [CREATED]
+    }) {
+      node {
+        id
+        createdAt
+        displayName 
+      }
+    }
+  }
+`
 
 export const NEW_LINKS_SUBSCRIPTION = gql`
   subscription {

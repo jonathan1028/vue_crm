@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { ALL_PEOPLE_QUERY } from '../constants/graphql'
+import { ALL_PEOPLE_QUERY, NEW_PEOPLE_SUBSCRIPTION } from '../constants/graphql'
 import CreatePerson from './CreatePerson'
 
 export default {
@@ -39,7 +39,28 @@ export default {
   apollo: {
     // allPerson here pulls the data from ALL_PEOPLE_QUERY and assigns it to the data(){} object at the top of script
     allPersons: {
-      query: ALL_PEOPLE_QUERY
+      query: ALL_PEOPLE_QUERY,
+      subscribeToMore:
+      [
+        {
+          document: NEW_PEOPLE_SUBSCRIPTION,
+          // mutate the previous result
+          updateQuery: (previous, { subscriptionData }) => {
+            const newAllPersons = [
+              ...previous.allPersons, subscriptionData.data.Person.node
+            ]
+            const result = {
+              ...previous,
+              // Changed from allLinks: newAllLinks to the below to add pagination feature
+              // This change ensures that only the most recent LINKS_PER_PAGE links
+              // will be shown even after an update through subscriptions.
+              // newAllLinks.slice(0, LINKS_PER_PAGE)
+              allPersons: newAllPersons
+            }
+            return result
+          }
+        }
+      ]
     }
   }
 }

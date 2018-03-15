@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { CREATE_PERSON_MUTATION } from '../constants/graphql'
+import { CREATE_PERSON_MUTATION, ALL_PEOPLE_QUERY } from '../constants/graphql'
 import { GC_USER_ID } from '../constants/settings'
 
 export default {
@@ -43,27 +43,17 @@ export default {
           // Sets variables in graphql.js
           displayName: newDisplayName,
           postedById
+        },
+        update: (store, { data: { createPerson } }) => {
+          const data = store.readQuery({
+            query: ALL_PEOPLE_QUERY
+          })
+          data.allPersons.push(createPerson)
+          store.writeQuery({
+            query: ALL_PEOPLE_QUERY,
+            data
+          })
         }
-        // update: (store, { data: { createLink } }) => {
-        //   const data = store.readQuery({
-        //     query: ALL_LINKS_QUERY,
-        //     variables: {
-        //       first: 5,
-        //       skip: 0,
-        //       orderBy: 'createdAt_DESC'
-        //     }
-        //   })
-        //   data.allLinks.push(createLink)
-        //   store.writeQuery({
-        //     query: ALL_LINKS_QUERY,
-        //     variables: {
-        //       first: 5,
-        //       skip: 0,
-        //       orderBy: 'createdAt_DESC'
-        //     },
-        //     data
-        //   })
-        // }
       // }).then((data) => {
       //   this.$router.push({path: '/'})
       }).catch((error) => {
