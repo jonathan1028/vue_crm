@@ -1,5 +1,5 @@
 # project: cjeq87ww03gm801881tjhtlyu
-# version: 3
+# version: 4
 
 type User @model {
   id: ID! @isUnique
@@ -8,6 +8,8 @@ type User @model {
   email: String @isUnique
   password: String
   name: String
+  peopleCreated: [Person!]! @relation(name: "CreatedByUser")
+  people: [Person!]! @relation(name: "OwnedByUser")
 }
 
 type File @model {
@@ -19,4 +21,20 @@ type File @model {
   size: Int!
   updatedAt: DateTime!
   url: String! @isUnique
+}
+
+type Person @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  firstName: String
+  lastName: String
+  displayName: String!
+  email: String
+  phone1: String
+  phone2: String
+  phoneTag1: String
+  phoneTag2: String
+  createdBy: User @relation(name: "CreatedByUser")
+  owner: User @relation(name: "OwnedByUser")
 }
