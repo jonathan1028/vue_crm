@@ -15,6 +15,8 @@
             <div class="authenticated-nav" v-if="userId">
               <div>|</div>
               <router-link to="/create">submit</router-link>
+              <div>|</div>
+              <router-link to="/people">people</router-link>
             </div>
           </div>
         </div>

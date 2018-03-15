@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import AppLogin from '../components/AppLogin'
 import CreateLink from '../components/CreateLink'
 import LinkList from '../components/LinkList'
-import AppLogin from '../components/AppLogin'
 import Search from '../components/Search'
+import People from '../components/People'
 
 Vue.use(Router)
 
@@ -18,6 +19,10 @@ export default new Router({
     {
       path: '/create',
       component: CreateLink
+    },
+    {
+      path: '/people',
+      component: People
     },
     {
       path: '/login',

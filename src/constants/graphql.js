@@ -1,5 +1,6 @@
 import gql from 'graphql-tag'
 
+// ----------------------------------------- Queries ---------------------------------------------
 export const ALL_LINKS_QUERY = gql`
   query AllLinksQuery($first: Int, $skip: Int, $orderBy: LinkOrderBy) {
     allLinks(first: $first, skip: $skip, orderBy: $orderBy) {
@@ -24,6 +25,16 @@ export const ALL_LINKS_QUERY = gql`
     }
   }
 `
+
+// export const ALL_PEOPLE_QUERY = gql`
+//   query AllPeopleQuery() {
+//     allLinks() {
+//       id
+//       createdAt
+//       displayName
+//     }
+//   }
+// `
 
 export const ALL_LINKS_SEARCH_QUERY = gql`
   query AllLinksSearchQuery($searchText: String!) {
@@ -51,6 +62,7 @@ export const ALL_LINKS_SEARCH_QUERY = gql`
     }
   }
 `
+// ----------------------------------------- Mutations ---------------------------------------------
 
 // Two mutations defined at once!
 // the execution order is always from top to bottom.
@@ -92,6 +104,18 @@ export const SIGNIN_USER_MUTATION = gql`
       user {
         id
       }
+    }
+  }
+`
+
+export const CREATE_PERSON_MUTATION = gql`
+  mutation CreatePersonMutation($displayName: String!) {
+    createPerson(
+      displayName: $displayName,
+    ) {
+      id
+      createdAt
+      displayName 
     }
   }
 `
