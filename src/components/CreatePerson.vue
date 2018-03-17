@@ -17,7 +17,7 @@ import { CREATE_PERSON_MUTATION, ALL_PEOPLE_QUERY } from '../constants/graphql'
 import { GC_USER_ID } from '../constants/settings'
 
 export default {
-  name: 'People',
+  name: 'CreatePerson',
   data () {
     return {
       name: ''
