@@ -1,16 +1,18 @@
 <template>
   <div>
     <create-person></create-person>
-    <h2>People</h2>
-    <div id="demo">
-      <form id="search">
-        Search <input name="query" v-model="searchQuery">
-      </form>
-      <vue-table
-        :data="allPersons"
-        :columns="gridColumns"
-        :filter-key="searchQuery">
-      </vue-table>
+    <div class="box">
+      <h1>People</h1>
+      <div>
+        <form id="search">
+          Search <input name="query" v-model="searchQuery">
+        </form>
+        <vue-table
+          :data="allPersons"
+          :columns="gridColumns"
+          :filter-key="searchQuery">
+        </vue-table>
+      </div>
     </div>
   </div>
 </template>
@@ -28,18 +30,15 @@ export default {
   data () {
     return {
       allPersons: [],
-      currentPage: 1,
-      elementsPerPage: 10,
-      ascending: false,
       sortColumn: '',
       searchQuery: '',
-      gridColumns: ['displayName', 'test'],
-      gridData: [
-        { name: 'Chuck Norris', power: Infinity },
-        { name: 'Bruce Lee', power: 9000 },
-        { name: 'Jackie Chan', power: 7000 },
-        { name: 'Jet Li', power: 8000 }
-      ]
+      gridColumns: ['displayName', 'test']
+      // gridData: [
+      //   { name: 'Chuck Norris', power: Infinity },
+      //   { name: 'Bruce Lee', power: 9000 },
+      //   { name: 'Jackie Chan', power: 7000 },
+      //   { name: 'Jet Li', power: 8000 }
+      // ]
     }
   },
   apollo: {

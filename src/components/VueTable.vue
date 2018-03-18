@@ -90,20 +90,22 @@ export default {
 </script>
 
 <style>
-body {
+/* body {
   font-family: Helvetica Neue, Arial, sans-serif;
   font-size: 14px;
   color: #444;
-}
+} */
 
 table {
-  border: 2px solid #42b983;
+  border-bottom: 2px solid lightgray;
   border-radius: 3px;
-  background-color: #fff;
+  background-color: white;
+  width: 100%;
 }
 
 th {
-  background-color: #42b983;
+  height: 40px;
+  background-color: lightgray;
   color: rgba(255,255,255,0.66);
   cursor: pointer;
   -webkit-user-select: none;
@@ -112,14 +114,19 @@ th {
   user-select: none;
 }
 
-td {
-  background-color: #f9f9f9;
+tr {
+  border-bottom: 1px solid lightgray;
+  height: 2em;
 }
 
-th, td {
+/* td {
+  background-color: #f9f9f9;
+} */
+
+/* th, td {
   min-width: 120px;
   padding: 10px 20px;
-}
+} */
 
 th.active {
   color: #fff;

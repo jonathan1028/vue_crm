@@ -1,14 +1,29 @@
 <template>
   <div>
-    <h2>New Person</h2>
-    <div class="flex flex-column mt3">
-      <input
-        class="mb2"
-        v-model="name"
-        type="text"
-        placeholder="Person's display name">
-    </div>
-    <button @click="createLink()">Submit</button>
+    <form class="box">
+      <h1>New Person</h1>
+      <div class="field">
+        <label class="label">First Name</label>
+        <div class="control flex flex-column mt3">
+          <input
+            class="input mb2"
+            v-model="firstName"
+            type="text"
+            placeholder="Person's display name">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Last Name</label>
+        <div class="control flex flex-column mt3">
+          <input
+            class="input mb2"
+            v-model="lastName"
+            type="text"
+            placeholder="Person's display name">
+        </div>
+      </div>
+      <button @click="createLink()">Submit</button>
+    </form>
   </div>
 </template>
 
@@ -20,7 +35,8 @@ export default {
   name: 'CreatePerson',
   data () {
     return {
-      name: ''
+      firstName: '',
+      lastName: ''
     }
   },
   methods: {
@@ -33,9 +49,9 @@ export default {
       }
 
       // Assign data from form inputs
-      const newDisplayName = this.name
+      const newDisplayName = this.firstName + ' ' + this.lastName
       // Clears out data??
-      this.name = ''
+      this.firstName = ''
 
       this.$apollo.mutate({
         mutation: CREATE_PERSON_MUTATION,
