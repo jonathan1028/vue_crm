@@ -3,24 +3,18 @@
     <form class="box">
       <h1>New Person</h1>
       <div class="field">
-        <label class="label">First Name</label>
-        <div class="control flex flex-column mt3">
-          <input
-            class="input mb2"
-            v-model="firstName"
-            type="text"
-            placeholder="Person's display name">
-        </div>
+        <label>First Name</label>
+        <input
+          v-model="firstName"
+          type="text"
+        >
       </div>
       <div class="field">
-        <label class="label">Last Name</label>
-        <div class="control flex flex-column mt3">
-          <input
-            class="input mb2"
-            v-model="lastName"
-            type="text"
-            placeholder="Person's display name">
-        </div>
+        <label>Last Name</label>
+        <input
+          v-model="lastName"
+          type="text"
+        >
       </div>
       <button @click="createLink()">Submit</button>
     </form>

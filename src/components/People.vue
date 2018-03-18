@@ -1,17 +1,19 @@
 <template>
   <div>
     <create-person></create-person>
-    <div class="box">
-      <h1>People</h1>
-      <div>
-        <form id="search">
-          Search <input name="query" v-model="searchQuery">
-        </form>
-        <vue-table
-          :data="allPersons"
-          :columns="gridColumns"
-          :filter-key="searchQuery">
-        </vue-table>
+    <div class="box effect6">
+      <div class="box-content">
+        <h1>People</h1>
+        <div>
+          <form class="search">
+            <input name="query" v-model="searchQuery" placeholder="Search">
+          </form>
+          <vue-table
+            :data="allPersons"
+            :columns="gridColumns"
+            :filter-key="searchQuery">
+          </vue-table>
+        </div>
       </div>
     </div>
   </div>
@@ -72,6 +74,9 @@ export default {
 </script>
 
 <style>
+.search{
+  width: 38%;
+}
 /* table {
   font-family: 'Open Sans', sans-serif;
   width: 750px;

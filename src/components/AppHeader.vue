@@ -21,9 +21,11 @@
           </div>
         </div>
         <!-- Login buttons   -->
-        <div class="login is-link">
-          <div v-if="userId" @click="logout()">logout</div>
-          <router-link v-else to="/login">login</router-link>
+        <div class="login">
+          <a>
+            <div v-if="userId" @click="logout()">logout</div>
+            <router-link v-else to="/login">login</router-link>
+          </a>
         </div>
     </div>
   </div>
@@ -59,6 +61,9 @@ export default {
   height: 40px;
   background-color: white;
   top: 0;
+  -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 .header-content{
   max-width: 90%;
@@ -80,18 +85,43 @@ export default {
   display: flex;
   justify-content:space-between;
   align-items: center;
+  color: #3273dc;
+  cursor: pointer;
+  text-decoration: none;
 }
+
+.nav-buttons a{
+  color: #3273dc;
+  text-decoration: none;
+}
+
+.nav-buttons a:visited{
+  color: #3273dc;
+  text-decoration: none;
+}
+
+.nav-buttons a:hover{
+  color: gray;
+  text-decoration: none;
+}
+
 .authenticated-nav{
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.login{
-  color: #3273dc;
-  cursor: pointer;
-}
-.login:hover {
-    color: gray;
+
+.login a{
+   color: #3273dc;
+   text-decoration: none;
 }
 
+.login a:visited{
+  color: #3273dc;
+  text-decoration: none;
+}
+
+.login a:hover{
+  color: gray;
+}
 </style>

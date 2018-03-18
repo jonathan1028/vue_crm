@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <!-- <th v-for="key in columns" -->
-          <th
+        <th
           v-for='(key, index) in columns'
           :key='index'
           :index="index"
@@ -96,7 +96,11 @@ export default {
   color: #444;
 } */
 
+/* tr:nth-child(3) { border: solid thin; } */
 table {
+  /* border-collapse is needed to make the borders work properly on rows */
+  margin-top: 1%;
+  border-collapse: collapse;
   border-bottom: 2px solid lightgray;
   border-radius: 3px;
   background-color: white;
@@ -105,18 +109,19 @@ table {
 
 th {
   height: 40px;
-  background-color: lightgray;
-  color: rgba(255,255,255,0.66);
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  background-color: rgb(220,220,220);
+  -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 
 tr {
+  height: 40px;
   border-bottom: 1px solid lightgray;
-  height: 2em;
+}
+
+tr:hover {
+  background-color: rgb(245, 245, 245);
 }
 
 /* td {
@@ -155,5 +160,40 @@ th.active .arrow {
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
   border-top: 4px solid #fff;
+}
+
+.effect7
+{
+  position:relative;
+  -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.effect7:before, .effect7:after
+{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  -webkit-box-shadow:0 0 20px rgba(0,0,0,0.8);
+  -moz-box-shadow:0 0 20px rgba(0,0,0,0.8);
+  box-shadow:0 0 20px rgba(0,0,0,0.8);
+  top:0;
+  bottom:0;
+  left:10px;
+  right:10px;
+  -moz-border-radius:100px / 10px;
+  border-radius:100px / 10px;
+}
+
+.effect7:after
+{
+  right:10px;
+  left:auto;
+  -webkit-transform:skew(8deg) rotate(3deg);
+  -moz-transform:skew(8deg) rotate(3deg);
+  -ms-transform:skew(8deg) rotate(3deg);
+  -o-transform:skew(8deg) rotate(3deg);
+  transform:skew(8deg) rotate(3deg);
 }
 </style>
