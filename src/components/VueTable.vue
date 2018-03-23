@@ -21,6 +21,7 @@
         v-for='(entry, index) in filteredData'
         :key='index'
         :index="index"
+        @click="redirect(entry.id)"
       >
         <!-- <td v-for="key in columns"> -->
         <td v-for='(key, index) in columns'
@@ -84,6 +85,9 @@ export default {
     sortBy: function (key) {
       this.sortKey = key
       this.sortOrders[key] = this.sortOrders[key] * -1
+    },
+    redirect: function (id) {
+      this.$router.push({path: `/person/${id}`})
     }
   }
 }
