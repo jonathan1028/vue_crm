@@ -52,14 +52,18 @@ form > button{
 }
 
 label {
-  width: 50%;
+  width: 30%;
   display: block;
   text-align: right;
   padding-right: 5%;
+  /* border: .5px solid lightgray; */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
-form > .field {
-  width: 40%;
+.field {
+  width: 50%;
   /* border: .5px solid lightgray; */
   margin-bottom: 1%;
   display: flex;
@@ -67,7 +71,7 @@ form > .field {
 }
 
 input{
-  width: 100%;
+  width: 70%;
   border: .5px solid lightgray;
   padding: 1%;
 }

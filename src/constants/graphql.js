@@ -32,6 +32,10 @@ export const ALL_PEOPLE_QUERY = gql`
       id
       createdAt
       displayName
+      firstName
+      lastName
+      phone1
+      email
     }
   }
 `
@@ -109,13 +113,22 @@ export const SIGNIN_USER_MUTATION = gql`
 `
 
 export const CREATE_PERSON_MUTATION = gql`
-  mutation CreatePersonMutation($displayName: String!) {
+  mutation CreatePersonMutation($displayName: String!, $firstName: String, $lastName: String, 
+    $phone1: String, $email: String) {
     createPerson(
       displayName: $displayName,
+      firstName: $firstName,
+      lastName: $lastName,
+      phone1: $phone1,
+      email: $email
     ) {
       id
       createdAt
       displayName 
+      firstName
+      lastName
+      phone1
+      email
     }
   }
 `
@@ -169,6 +182,10 @@ export const NEW_PEOPLE_SUBSCRIPTION = gql`
         id
         createdAt
         displayName 
+        firstName
+        lastName
+        phone1
+        email
       }
     }
   }

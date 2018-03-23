@@ -21,7 +21,7 @@
         v-for='(entry, index) in filteredData'
         :key='index'
         :index="index"
-        @click="redirect(entry.id)"
+        @click="savePersonData(entry)"
       >
         <!-- <td v-for="key in columns"> -->
         <td v-for='(key, index) in columns'
@@ -86,8 +86,15 @@ export default {
       this.sortKey = key
       this.sortOrders[key] = this.sortOrders[key] * -1
     },
-    redirect: function (id) {
-      this.$router.push({path: `/person/${id}`})
+    redirect: function (person) {
+      this.$store.person = person
+      this.$router.push({path: `/person/${person.id}`})
+    },
+    savePersonData (person) {
+      localStorage.setItem('person', JSON.stringify(person))
+      this.$root.$data.person = localStorage.getItem('person')
+      console.log('test1', JSON.parse(localStorage.getItem('person')))
+      this.$router.push({path: `/person/${person.id}`})
     }
   }
 }

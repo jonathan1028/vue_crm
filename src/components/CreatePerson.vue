@@ -16,6 +16,20 @@
           type="text"
         >
       </div>
+      <div class="field">
+        <label>Phone</label>
+        <input
+          v-model="phone1"
+          type="text"
+        >
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input
+          v-model="email"
+          type="text"
+        >
+      </div>
       <button @click="createLink()">Submit</button>
     </form>
   </div>
@@ -30,7 +44,9 @@ export default {
   data () {
     return {
       firstName: '',
-      lastName: ''
+      lastName: '',
+      phone1: '',
+      email: ''
     }
   },
   methods: {
@@ -44,14 +60,20 @@ export default {
 
       // Assign data from form inputs
       const newDisplayName = this.firstName + ' ' + this.lastName
+      const firstName = this.firstName
+      const lastName = this.lastName
       // Clears out data??
-      this.firstName = ''
+      // this.firstName = ''
 
       this.$apollo.mutate({
         mutation: CREATE_PERSON_MUTATION,
         variables: {
           // Sets variables in graphql.js
           displayName: newDisplayName,
+          firstName: firstName,
+          lastName: lastName,
+          phone1: this.phone1,
+          email: this.email,
           postedById
         },
         update: (store, { data: { createPerson } }) => {
