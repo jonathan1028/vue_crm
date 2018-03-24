@@ -13,7 +13,11 @@
           <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">
           </span>
         </th>
+        <th>
+          Links
+        </th>
       </tr>
+
     </thead>
     <tbody>
       <!-- <tr v-for="entry in filteredData"> -->
@@ -29,6 +33,10 @@
           :index="index"
         >
           {{entry[key]}}
+        </td>
+        <td>
+          <router-link to="/top">Edit</router-link>
+          <router-link to="/top">Delete</router-link>
         </td>
       </tr>
     </tbody>
@@ -94,7 +102,7 @@ export default {
       localStorage.setItem('person', JSON.stringify(person))
       this.$root.$data.person = localStorage.getItem('person')
       console.log('test1', JSON.parse(localStorage.getItem('person')))
-      this.$router.push({path: `/person/${person.id}`})
+      this.$router.push({path: `/editperson/${person.id}`})
     }
   }
 }

@@ -7,6 +7,7 @@ import LinkList from '../components/LinkList'
 import Search from '../components/Search'
 import People from '../components/People'
 import ReadPerson from '../components/ReadPerson'
+import EditPerson from '../components/EditPerson'
 
 Vue.use(Router)
 
@@ -44,8 +45,11 @@ export default new Router({
     },
     {
       path: '/person/:id',
-      component: ReadPerson,
-      props: true
+      component: ReadPerson
+    },
+    {
+      path: '/editperson/:id',
+      component: EditPerson
     }
   ],
   // set mode to ‘history’ to remove the hash from the URLs

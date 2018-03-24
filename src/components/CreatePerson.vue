@@ -77,10 +77,13 @@ export default {
           postedById
         },
         update: (store, { data: { createPerson } }) => {
+          // We get our current store for the given Query
           const data = store.readQuery({
             query: ALL_PEOPLE_QUERY
           })
+          // We add the new data
           data.allPersons.push(createPerson)
+          // We update the cache
           store.writeQuery({
             query: ALL_PEOPLE_QUERY,
             data

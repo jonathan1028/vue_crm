@@ -1,5 +1,5 @@
 # project: cjeq87ww03gm801881tjhtlyu
-# version: 4
+# version: 5
 
 type User @model {
   id: ID! @isUnique
@@ -29,7 +29,7 @@ type Person @model {
   updatedAt: DateTime!
   firstName: String
   lastName: String
-  displayName: String!
+  displayName: String
   email: String
   phone1: String
   phone2: String

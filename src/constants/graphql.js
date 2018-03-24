@@ -133,6 +133,23 @@ export const CREATE_PERSON_MUTATION = gql`
   }
 `
 
+export const UPDATE_PERSON_MUTATION = gql`
+  mutation UpdatePersonMutation($id: ID!, $displayName: String!, $firstName: String, 
+  $lastName: String, $phone1: String, $email: String) {
+    updatePerson(
+      id: $id,
+      displayName: $displayName,
+      firstName: $firstName,
+      lastName: $lastName,
+      phone1: $phone1, 
+      email: $email
+    ) {
+      id
+      displayName
+    }
+  }
+`
+
 export const CREATE_LINK_MUTATION = gql`
   mutation CreateLinkMutation($description: String!, $url: String!, $postedById: ID!) {
     createLink(
