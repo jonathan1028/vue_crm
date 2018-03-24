@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- @submit.prevent="" -->
     <form class="box">
       <h1>New Person</h1>
       <div class="field">
@@ -30,13 +31,15 @@
           type="text"
         >
       </div>
-      <button @click="createLink()">Submit</button>
+      <button @click.prevent="cancel()">Cancel</button>
+      <button @click.prevent="createPerson()">Submit</button>
     </form>
   </div>
 </template>
 
 <script>
-import { CREATE_PERSON_MUTATION, ALL_PEOPLE_QUERY } from '../constants/graphql'
+import { CREATE_PERSON_MUTATION } from '../constants/graphql'
+// import { CREATE_PERSON_MUTATION, ALL_PEOPLE_QUERY } from '../constants/graphql'
 import { GC_USER_ID } from '../constants/settings'
 
 export default {
@@ -50,7 +53,13 @@ export default {
     }
   },
   methods: {
-    createLink () {
+    cancel () {
+      this.$store.commit('toggleDisplay')
+    },
+    onSubmit () {
+      return null
+    },
+    createPerson () {
       // Checks permissions
       const postedById = localStorage.getItem(GC_USER_ID)
       if (!postedById) {
@@ -58,12 +67,16 @@ export default {
         return
       }
 
+      this.$store.commit('toggleDisplay')
       // Assign data from form inputs
       const newDisplayName = this.firstName + ' ' + this.lastName
       const firstName = this.firstName
       const lastName = this.lastName
       // Clears out data??
-      // this.firstName = ''
+      this.firstName = ''
+      this.lastName = ''
+      this.phone1 = ''
+      this.email = ''
 
       this.$apollo.mutate({
         mutation: CREATE_PERSON_MUTATION,
@@ -75,20 +88,20 @@ export default {
           phone1: this.phone1,
           email: this.email,
           postedById
-        },
-        update: (store, { data: { createPerson } }) => {
-          // We get our current store for the given Query
-          const data = store.readQuery({
-            query: ALL_PEOPLE_QUERY
-          })
-          // We add the new data
-          data.allPersons.push(createPerson)
-          // We update the cache
-          store.writeQuery({
-            query: ALL_PEOPLE_QUERY,
-            data
-          })
         }
+        // update: (store, { data: { createPerson } }) => {
+        //   // We get our current store for the given Query
+        //   const data = store.readQuery({
+        //     query: ALL_PEOPLE_QUERY
+        //   })
+        //   // We add the new data
+        //   data.allPersons.push(createPerson)
+        //   // We update the cache
+        //   store.writeQuery({
+        //     query: ALL_PEOPLE_QUERY,
+        //     data
+        //   })
+        // }
       // }).then((data) => {
       //   this.$router.push({path: '/'})
       }).catch((error) => {

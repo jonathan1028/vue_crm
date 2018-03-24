@@ -6,11 +6,15 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     count: 0,
-    person: {}
+    person: {},
+    showCreatePerson: false
   },
   mutations: {
     increment (state) {
       state.count++
+    },
+    toggleDisplay (state) {
+      state.showCreatePerson = !state.showCreatePerson
     }
   }
 })

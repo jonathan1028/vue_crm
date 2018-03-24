@@ -1,9 +1,14 @@
 <template>
   <div>
-    <create-person></create-person>
+    <span v-if="this.$store.state.showCreatePerson">
+      <create-person></create-person>
+    </span>
     <div class="box effect6">
       <div class="box-content">
         <h1>People</h1>
+        <button
+          @click="openCreatePerson()"
+        >Add New</button>
         <div>
           <form class="search">
             <input name="query" v-model="searchQuery" placeholder="Search">
@@ -31,6 +36,7 @@ export default {
   },
   data () {
     return {
+      showCreatePerson: this.$store.showCreatePerson,
       allPersons: [],
       sortColumn: '',
       searchQuery: '',
@@ -46,6 +52,13 @@ export default {
   created () {
     this.$store.commit('increment')
     console.log('store', this.$store.state.count)
+  },
+  methods: {
+    openCreatePerson () {
+      console.log('Test', this.$store.state.showCreatePerson)
+      this.$store.commit('toggleDisplay')
+      console.log('Test2', this.$store.state.showCreatePerson)
+    }
   },
   apollo: {
     // allPerson here pulls the data from ALL_PEOPLE_QUERY and assigns it to the data(){} object at the top of script
