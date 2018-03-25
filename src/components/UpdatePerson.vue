@@ -1,32 +1,32 @@
 <template>
   <div>
     <form class="box">
-      <h1>{{this.person.displayName}}</h1>
+      <h1>{{person.displayName}}</h1>
       <div class="field">
         <label>First Name</label>
         <input
-          v-model="firstName"
+          v-model="person.firstName"
           type="text"
         >
       </div>
       <div class="field">
         <label>Last Name</label>
         <input
-          v-model="lastName"
+          v-model="person.lastName"
           type="text"
         >
       </div>
       <div class="field">
         <label>Phone</label>
         <input
-          v-model="phone1"
+          v-model="person.phone1"
           type="text"
         >
       </div>
       <div class="field">
         <label>Email</label>
         <input
-          v-model="email"
+          v-model="person.email"
           type="text"
         >
       </div>
@@ -40,27 +40,20 @@ import { UPDATE_PERSON_MUTATION } from '../constants/graphql'
 // import { GC_USER_ID } from '../constants/settings'
 
 export default {
-  name: 'EditPerson',
-  beforeCreate () {
-    this.person = JSON.parse(localStorage.getItem('person'))
-    this.id = this.$route.params.id
-  },
+  name: 'UpdatePerson',
   data () {
     return {
-      firstName: this.person.firstName,
-      lastName: this.person.lastName,
-      phone1: this.person.phone1,
-      email: this.person.email
+      person: JSON.parse(localStorage.getItem('person'))
     }
   },
   methods: {
     submit () {
       // Save the user input in case of an error
-      const displayName = this.firstName + ' ' + this.lastName
-      const firstName = this.firstName
-      const lastName = this.lastName
-      const phone1 = this.phone1
-      const email = this.email
+      const displayName = this.person.firstName + ' ' + this.person.lastName
+      const firstName = this.person.firstName
+      const lastName = this.person.lastName
+      const phone1 = this.person.phone1
+      const email = this.person.email
       // Clear it early to give the UI a snappy feel
       this.displayName = ''
       this.firstName = ''
@@ -68,10 +61,12 @@ export default {
       this.phone1 = ''
       this.email = ''
 
+      console.log('this', this.person.firstName)
+
       this.$apollo.mutate({
         mutation: UPDATE_PERSON_MUTATION,
         variables: {
-          id: this.id,
+          id: this.person.id,
           displayName: displayName,
           firstName: firstName,
           lastName: lastName,
@@ -79,9 +74,7 @@ export default {
           email: email
         }
       })
-        .catch((error) => {
-          console.error(error)
-        })
+      this.$router.push({path: '/people'})
     }
     // updatePerson () {
     //   // Checks permissions

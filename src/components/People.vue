@@ -49,15 +49,9 @@ export default {
       // ]
     }
   },
-  created () {
-    this.$store.commit('increment')
-    console.log('store', this.$store.state.count)
-  },
   methods: {
     openCreatePerson () {
-      console.log('Test', this.$store.state.showCreatePerson)
       this.$store.commit('toggleDisplay')
-      console.log('Test2', this.$store.state.showCreatePerson)
     }
   },
   apollo: {

@@ -25,18 +25,22 @@
         v-for='(entry, index) in filteredData'
         :key='index'
         :index="index"
-        @click="savePersonData(entry)"
       >
         <!-- <td v-for="key in columns"> -->
         <td v-for='(key, index) in columns'
           :key='index'
           :index="index"
+          @click="viewPerson(entry)"
         >
           {{entry[key]}}
         </td>
         <td>
-          <router-link to="/top">Edit</router-link>
-          <router-link to="/top">Delete</router-link>
+          <button
+            @click="updatePerson(entry)"
+          >Edit</button>
+          <button
+            @click="deletePerson(entry)"
+          >Delete</button>
         </td>
       </tr>
     </tbody>
@@ -44,6 +48,8 @@
 </template>
 
 <script>
+import { DELETE_PERSON_MUTATION } from '../constants/graphql'
+
 export default {
   name: 'VueTable',
   props: {
@@ -94,15 +100,23 @@ export default {
       this.sortKey = key
       this.sortOrders[key] = this.sortOrders[key] * -1
     },
-    redirect: function (person) {
-      this.$store.person = person
+    viewPerson: function (person) {
+      localStorage.setItem('person', JSON.stringify(person))
       this.$router.push({path: `/person/${person.id}`})
     },
-    savePersonData (person) {
+    updatePerson (person) {
       localStorage.setItem('person', JSON.stringify(person))
-      this.$root.$data.person = localStorage.getItem('person')
       console.log('test1', JSON.parse(localStorage.getItem('person')))
-      this.$router.push({path: `/editperson/${person.id}`})
+      this.$router.push({path: `/person/update/${person.id}`})
+    },
+    deletePerson (person) {
+      console.log('Delete')
+      this.$apollo.mutate({
+        mutation: DELETE_PERSON_MUTATION,
+        variables: {
+          id: person.id
+        }
+      })
     }
   }
 }

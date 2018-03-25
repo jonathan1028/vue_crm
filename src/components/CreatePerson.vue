@@ -67,7 +67,6 @@ export default {
         return
       }
 
-      this.$store.commit('toggleDisplay')
       // Assign data from form inputs
       const newDisplayName = this.firstName + ' ' + this.lastName
       const firstName = this.firstName
@@ -108,6 +107,7 @@ export default {
         console.error(error)
         this.newDisplayName = newDisplayName
       })
+      this.$store.commit('toggleDisplay')
     }
   }
 }

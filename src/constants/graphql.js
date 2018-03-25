@@ -150,6 +150,16 @@ export const UPDATE_PERSON_MUTATION = gql`
   }
 `
 
+export const DELETE_PERSON_MUTATION = gql`
+  mutation DeletePersonMutation($id: ID!) {
+    deletePerson(
+      id: $id,
+    ) {
+      id
+    }
+  }
+`
+
 export const CREATE_LINK_MUTATION = gql`
   mutation CreateLinkMutation($description: String!, $url: String!, $postedById: ID!) {
     createLink(
