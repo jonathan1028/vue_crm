@@ -30,13 +30,13 @@
           type="text"
         >
       </div>
-      <button @click="submit()">Update</button>
+      <button @click.prevent="submit()">Update</button>
     </form>
   </div>
 </template>
 
 <script>
-import { UPDATE_PERSON_MUTATION } from '../constants/graphql'
+import { ALL_PEOPLE_QUERY, UPDATE_PERSON_MUTATION } from '../constants/graphql'
 // import { GC_USER_ID } from '../constants/settings'
 
 export default {
@@ -55,13 +55,13 @@ export default {
       const phone1 = this.person.phone1
       const email = this.person.email
       // Clear it early to give the UI a snappy feel
-      this.displayName = ''
-      this.firstName = ''
-      this.lastName = ''
-      this.phone1 = ''
-      this.email = ''
+      // this.displayName = ''
+      // this.firstName = ''
+      // this.lastName = ''
+      // this.phone1 = ''
+      // this.email = ''
 
-      console.log('this', this.person.firstName)
+      this.person.displayName = this.person.firstName + ' ' + this.person.lastName
 
       this.$apollo.mutate({
         mutation: UPDATE_PERSON_MUTATION,
@@ -72,54 +72,22 @@ export default {
           lastName: lastName,
           phone1: phone1,
           email: email
+        },
+        update: (store, { data: { updatePerson } }) => {
+          // Get data from store
+          const data = store.readQuery({ query: ALL_PEOPLE_QUERY })
+          // Delete the current person and replace it with a copay
+          let index = data.allPersons.findIndex(x => x.id === this.person.id)
+          if (index !== -1) {
+            data.allPersons.splice(index, 1)
+            data.allPersons.splice(index, 0, this.person)
+          }
+          // Update the store
+          store.writeQuery({ query: ALL_PEOPLE_QUERY, data: data })
         }
       })
       this.$router.push({path: '/people'})
     }
-    // updatePerson () {
-    //   // Checks permissions
-    //   const postedById = localStorage.getItem(GC_USER_ID)
-    //   if (!postedById) {
-    //     console.error('No user logged in')
-    //     return
-    //   }
-
-    //   // Save the user input in case of an error
-    //   const newDisplayName = this.firstName + ' ' + this.lastName
-    //   // const firstName = this.firstName
-    //   // const lastName = this.lastName
-    //   // We clear it early to give the UI a snappy feel
-    //   // this.firstName = ''
-    //   console.log('Person', this.firstName)
-    //   this.$apollo.mutate({
-    //     mutation: UPDATE_PERSON_MUTATION,
-    //     variables: {
-    //       ...this.person,
-    //       displayName: newDisplayName
-    //     }
-    //     // update (data) {
-    //     //   console.log(data)
-    //     // }
-    //     // update: (store, { data: { createPerson } }) => {
-    //     //   // We get our current store for the given Query
-    //     //   const data = store.readQuery({
-    //     //     query: ALL_PEOPLE_QUERY
-    //     //   })
-    //     //   //We add the new data
-    //     //   data.allPersons.push(createPerson)
-    //     //   //We update the cache
-    //     //   store.writeQuery({
-    //     //     query: ALL_PEOPLE_QUERY,
-    //     //     data
-    //     //   })
-    //     // }
-    //   // }).then((data) => {
-    //   //   console.log(data)
-    //   }).catch((error) => {
-    //     console.error(error)
-    //     this.newDisplayName = newDisplayName
-    //   })
-    // }
   }
 }
 </script>
