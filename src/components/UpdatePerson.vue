@@ -79,8 +79,7 @@ export default {
           // Delete the current person and replace it with a copay
           let index = data.allPersons.findIndex(x => x.id === this.person.id)
           if (index !== -1) {
-            data.allPersons.splice(index, 1)
-            data.allPersons.splice(index, 0, this.person)
+            data.allPersons[index] = Object.assign({}, this.person)
           }
           // Update the store
           store.writeQuery({ query: ALL_PEOPLE_QUERY, data: data })
