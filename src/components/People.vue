@@ -14,8 +14,8 @@
             <input name="query" v-model="searchQuery" placeholder="Search">
           </form>
           <vue-table
-            :data="allPersons"
-            :columns="gridColumns"
+            :data="processData(allPersons)"
+            :columns="columns"
             :filter-key="searchQuery">
           </vue-table>
         </div>
@@ -40,7 +40,12 @@ export default {
       allPersons: [],
       sortColumn: '',
       searchQuery: '',
-      gridColumns: ['displayName', 'phone1', 'email', 'ownedBy']
+      dbFields: ['displayName'],
+      columns: [
+        {dbField: 'displayName', title: 'name'},
+        {dbField: 'phone1', title: 'phone'},
+        {dbField: 'email', title: 'email'},
+        {dbField: 'ownedBy', title: 'owner'}]
       // gridData: [
       //   { name: 'Chuck Norris', power: Infinity },
       //   { name: 'Bruce Lee', power: 9000 },
@@ -52,6 +57,10 @@ export default {
   methods: {
     openCreatePerson () {
       this.$store.commit('toggleDisplay')
+    },
+    processData (data) {
+      console.log(data)
+      return data
     }
   },
   apollo: {

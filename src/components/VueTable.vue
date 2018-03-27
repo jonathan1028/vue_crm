@@ -2,15 +2,14 @@
   <table>
     <thead>
       <tr>
-        <!-- <th v-for="key in columns" -->
         <th
-          v-for='(key, index) in columns'
+          v-for='(item, index) in columns'
           :key='index'
           :index="index"
-          @click="sortBy(key)"
-          :class="{ active: sortKey == key }">
-          {{ key | capitalize }}
-          <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">
+          @click="sortBy(item.dbField)"
+          :class="{ active: sortKey == item.dbField }">
+          {{ item.title | capitalize }}
+          <span class="arrow" :class="sortOrders[item.dbField] > 0 ? 'asc' : 'dsc'">
           </span>
         </th>
         <th>
@@ -20,19 +19,22 @@
 
     </thead>
     <tbody>
-      <!-- <tr v-for="entry in filteredData"> -->
       <tr
         v-for='(entry, index) in filteredData'
         :key='index'
         :index="index"
       >
-        <!-- <td v-for="key in columns"> -->
-        <td v-for='(key, index) in columns'
+        <td v-for='(col, index) in columns'
           :key='index'
           :index="index"
           @click="viewPerson(entry)"
         >
-          {{entry[key]}}
+        <div v-if="isOwner(col.dbField)">
+          {{getName(entry[col.dbField])}}
+        </div>
+         <div v-else>
+          {{entry[col.dbField]}}
+        </div>
         </td>
         <td>
           <button
@@ -59,7 +61,8 @@ export default {
   },
   data: function () {
     var sortOrders = {}
-    this.columns.forEach(function (key) {
+    const fields = this.columns.map(x => x.dbField)
+    fields.forEach(function (key) {
       sortOrders[key] = 1
     })
     return {
@@ -96,6 +99,20 @@ export default {
     }
   },
   methods: {
+    isOwner: function (field) {
+      if (field === 'ownedBy') {
+        return true
+      } else {
+        return false
+      }
+    },
+    getName: function (owner) {
+      if (owner && owner.name) {
+        return owner.name
+      } else {
+        return ''
+      }
+    },
     sortBy: function (key) {
       this.sortKey = key
       this.sortOrders[key] = this.sortOrders[key] * -1
