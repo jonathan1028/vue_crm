@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { DELETE_PERSON_MUTATION } from '../constants/graphql'
+import { ALL_PEOPLE_QUERY, DELETE_PERSON_MUTATION } from '../constants/graphql'
 
 export default {
   name: 'VueTable',
@@ -110,12 +110,24 @@ export default {
       this.$router.push({path: `/person/update/${person.id}`})
     },
     deletePerson (person) {
-      console.log('Delete')
       this.$apollo.mutate({
         mutation: DELETE_PERSON_MUTATION,
         variables: {
           id: person.id
+        },
+        update: (store, { data: { deletePerson } }) => {
+          // Read the data from our cache for this query.
+          const data = store.readQuery({ query: ALL_PEOPLE_QUERY })
+          // Remove item from the list
+          const index = data.allPersons.findIndex(x => x.id === person.id)
+          if (index !== -1) {
+            data.allPersons.splice(index, 1)
+          }
+          // Take the modified data and write it back into the store.
+          store.writeQuery({ query: ALL_PEOPLE_QUERY, data })
         }
+      }).catch((error) => {
+        console.error(error)
       })
     }
   }
