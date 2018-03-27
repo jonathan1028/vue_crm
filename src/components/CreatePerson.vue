@@ -61,8 +61,8 @@ export default {
     },
     createPerson () {
       // Checks permissions
-      const postedById = localStorage.getItem(GC_USER_ID)
-      if (!postedById) {
+      const currentUser = localStorage.getItem(GC_USER_ID)
+      if (!currentUser) {
         console.error('No user logged in')
         return
       }
@@ -86,7 +86,7 @@ export default {
           lastName: lastName,
           phone1: this.phone1,
           email: this.email,
-          postedById
+          ownedById: currentUser
         }
         // update: (store, { data: { createPerson } }) => {
         //   // We get our current store for the given Query

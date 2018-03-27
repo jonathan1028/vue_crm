@@ -40,7 +40,7 @@ export default {
       allPersons: [],
       sortColumn: '',
       searchQuery: '',
-      gridColumns: ['displayName', 'firstName', 'phone1', 'email']
+      gridColumns: ['displayName', 'phone1', 'email', 'ownedBy']
       // gridData: [
       //   { name: 'Chuck Norris', power: Infinity },
       //   { name: 'Bruce Lee', power: 9000 },

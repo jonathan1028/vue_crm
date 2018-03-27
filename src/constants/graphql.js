@@ -36,6 +36,10 @@ export const ALL_PEOPLE_QUERY = gql`
       lastName
       phone1
       email
+      ownedBy {
+        id
+        name
+      }
     }
   }
 `
@@ -114,13 +118,14 @@ export const SIGNIN_USER_MUTATION = gql`
 
 export const CREATE_PERSON_MUTATION = gql`
   mutation CreatePersonMutation($displayName: String!, $firstName: String, $lastName: String, 
-    $phone1: String, $email: String) {
+    $phone1: String, $email: String, $ownedById: ID!) {
     createPerson(
       displayName: $displayName,
       firstName: $firstName,
       lastName: $lastName,
       phone1: $phone1,
-      email: $email
+      email: $email,
+      ownedById: $ownedById
     ) {
       id
       createdAt

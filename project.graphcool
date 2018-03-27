@@ -1,5 +1,5 @@
 # project: cjeq87ww03gm801881tjhtlyu
-# version: 5
+# version: 6
 
 type User @model {
   id: ID! @isUnique
@@ -8,8 +8,8 @@ type User @model {
   email: String @isUnique
   password: String
   name: String
+  persons: [Person!]! @relation(name: "UsersPersons")
   peopleCreated: [Person!]! @relation(name: "CreatedByUser")
-  people: [Person!]! @relation(name: "OwnedByUser")
 }
 
 type File @model {
@@ -35,6 +35,6 @@ type Person @model {
   phone2: String
   phoneTag1: String
   phoneTag2: String
+  ownedBy: User @relation(name: "UsersPersons")
   createdBy: User @relation(name: "CreatedByUser")
-  owner: User @relation(name: "OwnedByUser")
 }
