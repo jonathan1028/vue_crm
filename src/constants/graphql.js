@@ -134,6 +134,10 @@ export const CREATE_PERSON_MUTATION = gql`
       lastName
       phone1
       email
+      ownedBy {
+        id
+        name
+      }
     }
   }
 `
@@ -218,6 +222,9 @@ export const NEW_PEOPLE_SUBSCRIPTION = gql`
         lastName
         phone1
         email
+        ownedBy {
+          id
+        }
       }
     }
   }

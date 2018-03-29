@@ -38,8 +38,8 @@
 </template>
 
 <script>
-import { CREATE_PERSON_MUTATION } from '../constants/graphql'
-// import { CREATE_PERSON_MUTATION, ALL_PEOPLE_QUERY } from '../constants/graphql'
+// import { CREATE_PERSON_MUTATION } from '../constants/graphql'
+import { CREATE_PERSON_MUTATION, ALL_PEOPLE_QUERY } from '../constants/graphql'
 import { GC_USER_ID } from '../constants/settings'
 
 export default {
@@ -56,9 +56,6 @@ export default {
     cancel () {
       this.$store.commit('toggleDisplay')
     },
-    onSubmit () {
-      return null
-    },
     createPerson () {
       // Checks permissions
       const currentUser = localStorage.getItem(GC_USER_ID)
@@ -66,11 +63,14 @@ export default {
         console.error('No user logged in')
         return
       }
+      console.log('User', currentUser)
 
       // Assign data from form inputs
       const newDisplayName = this.firstName + ' ' + this.lastName
       const firstName = this.firstName
       const lastName = this.lastName
+      const email = this.email
+      const phone1 = this.phone1
       // Clears out data??
       this.firstName = ''
       this.lastName = ''
@@ -84,28 +84,20 @@ export default {
           displayName: newDisplayName,
           firstName: firstName,
           lastName: lastName,
-          phone1: this.phone1,
-          email: this.email,
+          phone1: phone1,
+          email: email,
           ownedById: currentUser
+        },
+        update: (store, { data: { createPerson } }) => {
+          // Pull data from the stored query
+          const data = store.readQuery({ query: ALL_PEOPLE_QUERY })
+          // We add the new data
+          data.allPersons.push(createPerson)
+          // We update the cache
+          store.writeQuery({ query: ALL_PEOPLE_QUERY, data: data })
         }
-        // update: (store, { data: { createPerson } }) => {
-        //   // We get our current store for the given Query
-        //   const data = store.readQuery({
-        //     query: ALL_PEOPLE_QUERY
-        //   })
-        //   // We add the new data
-        //   data.allPersons.push(createPerson)
-        //   // We update the cache
-        //   store.writeQuery({
-        //     query: ALL_PEOPLE_QUERY,
-        //     data
-        //   })
-        // }
-      // }).then((data) => {
-      //   this.$router.push({path: '/'})
       }).catch((error) => {
         console.error(error)
-        this.newDisplayName = newDisplayName
       })
       this.$store.commit('toggleDisplay')
     }
