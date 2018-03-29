@@ -3,19 +3,11 @@
     <div class="header-content">
         <div class="main-nav">
           <!-- Logo -->
-          <div class="logo">Hacker News</div>
+          <div class="logo">Agilent CRM</div>
           <!-- Main navigation -->
           <div class="nav-buttons">
-            <router-link to="/">new</router-link>
-            <div>|</div>
-            <router-link to="/top">top</router-link>
-            <div>|</div>
-            <router-link to="/search">search</router-link>
             <!-- Logged in navigation -->
             <div class="authenticated-nav" v-if="userId">
-              <div>|</div>
-              <router-link to="/create">submit</router-link>
-              <div>|</div>
               <router-link to="/people">people</router-link>
             </div>
           </div>

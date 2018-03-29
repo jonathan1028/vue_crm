@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="box">
     <h4 class='mv3'>{{login ? 'Login' : 'Sign Up'}}</h4>
-    <div class='flex flex-column'>
+    <div>
       <input
         v-show="!login"
         v-model="name"
@@ -17,16 +17,16 @@
         placeholder="Password">
     </div>
     <div class='flex mt3'>
-      <div
+      <button
         class='pointer mr2 button'
         @click="confirm()">
         {{login ? 'login' : 'create account'}}
-      </div>
-      <div
+      </button>
+      <button
         class='pointer button'
         @click="login = !login">
-        {{login ? 'need to create an account?' : 'already have an account?'}}
-      </div>
+        {{login ? 'Create Account' : 'already have an account?'}}
+      </button>
     </div>
   </div>
 </template>
