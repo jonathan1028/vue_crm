@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- @submit.prevent="" -->
     <form class="box">
       <h1>New Person</h1>
       <div class="field">
@@ -32,7 +31,7 @@
         >
       </div>
       <button @click.prevent="cancel()">Cancel</button>
-      <button @click.prevent="createPerson()">Submit</button>
+      <button @click.prevent="create()">Submit</button>
     </form>
   </div>
 </template>
@@ -56,7 +55,7 @@ export default {
     cancel () {
       this.$store.commit('toggleDisplay')
     },
-    createPerson () {
+    create () {
       // Checks permissions
       const currentUser = localStorage.getItem(GC_USER_ID)
       if (!currentUser) {

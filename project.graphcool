@@ -1,5 +1,5 @@
 # project: cjeq87ww03gm801881tjhtlyu
-# version: 6
+# version: 9
 
 type User @model {
   id: ID! @isUnique
@@ -9,7 +9,7 @@ type User @model {
   password: String
   name: String
   persons: [Person!]! @relation(name: "UsersPersons")
-  peopleCreated: [Person!]! @relation(name: "CreatedByUser")
+  opportunities: [Opportunity!]! @relation(name: "UserOpportunities")
 }
 
 type File @model {
@@ -36,5 +36,22 @@ type Person @model {
   phoneTag1: String
   phoneTag2: String
   ownedBy: User @relation(name: "UsersPersons")
-  createdBy: User @relation(name: "CreatedByUser")
+  opportunities: [Opportunity!]! @relation(name: "PersonOpportunities")
+}
+
+type Opportunity @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  jobName: String
+  stage: String
+  status: String
+  amount: Float
+  source: String
+  estimatedCloseDate: DateTime
+  probability: Int
+  nextStep: String
+  description: String
+  contacts: [Person!]! @relation(name: "PersonOpportunities")
+  ownedBy: User @relation(name: "UserOpportunities")
 }

@@ -7,7 +7,8 @@ const store = new Vuex.Store({
   state: {
     count: 0,
     person: {},
-    showCreatePerson: false
+    showCreatePerson: false,
+    showCreateOpportunity: false
   },
   mutations: {
     increment (state) {
@@ -15,6 +16,9 @@ const store = new Vuex.Store({
     },
     toggleDisplay (state) {
       state.showCreatePerson = !state.showCreatePerson
+    },
+    toggleCreateOpportunity (state) {
+      state.showCreateOpportunity = !state.showCreateOpportunity
     }
   }
 })

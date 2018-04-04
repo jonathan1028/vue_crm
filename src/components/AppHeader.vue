@@ -8,15 +8,17 @@
           <div class="nav-buttons">
             <!-- Logged in navigation -->
             <div class="authenticated-nav" v-if="userId">
-              <router-link to="/people">people</router-link>
+              <router-link to="/people">People</router-link>
+              <div>|</div>
+              <router-link to="/opportunities">Opportunities</router-link>
             </div>
           </div>
         </div>
         <!-- Login buttons   -->
         <div class="login">
           <a>
-            <div v-if="userId" @click="logout()">logout</div>
-            <router-link v-else to="/login">login</router-link>
+            <div v-if="userId" @click="logout()">Logout</div>
+            <router-link v-else to="/login">Login</router-link>
           </a>
         </div>
     </div>

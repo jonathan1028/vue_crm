@@ -43,6 +43,28 @@ export const ALL_PEOPLE_QUERY = gql`
     }
   }
 `
+export const ALL_OPPORTUNITIES_QUERY = gql`
+  query AllOpportunitiesQuery {
+    allOpportunities {
+      id
+      jobName
+      stage
+      status
+      amount
+      source
+      estimatedCloseDate
+      probability
+      ownedBy {
+        id
+        name
+      }
+      contacts {
+        id
+        displayName
+      }
+    }
+  }
+`
 
 export const ALL_LINKS_SEARCH_QUERY = gql`
   query AllLinksSearchQuery($searchText: String!) {
@@ -138,6 +160,24 @@ export const CREATE_PERSON_MUTATION = gql`
         id
         name
       }
+    }
+  }
+`
+
+export const CREATE_OPPORTUNITY_MUTATION = gql`
+  mutation CreateOpportunityMutation($jobName: String, $ownedById: ID!, $source: String, $contacts: [ID!], $stage: String, $status: String,
+  $amount: Float, $probability: Int) {
+    createOpportunity(
+      jobName: $jobName
+      contactsIds: $contacts
+      ownedById: $ownedById
+      source: $source
+      stage: $stage
+      status: $status
+      amount: $amount
+      probability: $probability
+    ) {
+      id
     }
   }
 `
