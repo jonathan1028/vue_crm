@@ -11,7 +11,9 @@
               <router-link to="/people">People</router-link>
               <div>|</div>
               <router-link to="/opportunities">Opportunities</router-link>
+              <div>|</div>
             </div>
+            <router-link to="/admin">Admin Panel</router-link>
           </div>
         </div>
         <!-- Login buttons   -->
