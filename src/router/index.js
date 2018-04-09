@@ -6,6 +6,9 @@ import People from '../components/People'
 import ReadPerson from '../components/ReadPerson'
 import UpdatePerson from '../components/UpdatePerson'
 import Opportunities from '../components/Opportunities'
+import Admin from '../components/Admin'
+import UpdateUser from '../components/UpdateUser'
+import ReadUser from '../components/ReadUser'
 // import { GC_USER_ID } from '../constants/settings'
 
 // let userId = localStorage.getItem(GC_USER_ID)
@@ -44,6 +47,20 @@ export default new Router({
     {
       path: '/opportunities',
       component: Opportunities
+    },
+    // ------------------------------------------ Admin ----------------------------------
+    {
+      path: '/admin',
+      component: Admin
+    },
+    {
+      path: '/user/:id',
+      component: ReadUser
+    },
+    {
+      path: '/user/update/:id',
+      component: UpdateUser,
+      name: 'updateUser'
     }
   ],
   // set mode to ‘history’ to remove the hash from the URLs

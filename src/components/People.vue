@@ -41,7 +41,6 @@ export default {
       allPersons: [],
       sortColumn: '',
       searchQuery: '',
-      dbFields: ['displayName'],
       columns: [
         {dbField: 'displayName', title: 'name'},
         {dbField: 'phone1', title: 'phone'},
