@@ -6,9 +6,10 @@ import People from '../components/People'
 import ReadPerson from '../components/ReadPerson'
 import UpdatePerson from '../components/UpdatePerson'
 import Opportunities from '../components/Opportunities'
-import Admin from '../components/Admin'
-import UpdateUser from '../components/UpdateUser'
-import ReadUser from '../components/ReadUser'
+import Admin from '../components/admin/Admin'
+import UpdateUser from '../components/admin/UpdateUser'
+import ReadUser from '../components/admin/ReadUser'
+import NewUsers from '../components/admin/NewUsers'
 // import { GC_USER_ID } from '../constants/settings'
 
 // let userId = localStorage.getItem(GC_USER_ID)
@@ -52,6 +53,10 @@ export default new Router({
     {
       path: '/admin',
       component: Admin
+    },
+    {
+      path: '/newusers',
+      component: NewUsers
     },
     {
       path: '/user/:id',

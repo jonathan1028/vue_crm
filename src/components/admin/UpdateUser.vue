@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { ALL_USERS_QUERY, UPDATE_USER_MUTATION } from '../constants/graphql'
+import { ALL_USERS_QUERY, UPDATE_USER_MUTATION } from '../../constants/graphql'
 
 export default {
   name: 'UpdateUser',

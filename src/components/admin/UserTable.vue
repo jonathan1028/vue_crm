@@ -53,8 +53,8 @@
 </template>
 
 <script>
-import { ALL_USERS_QUERY, DELETE_USER_MUTATION } from '../constants/graphql'
-import { GC_USER_ID } from '../constants/settings'
+import { ALL_USERS_QUERY, DELETE_USER_MUTATION } from '../../constants/graphql'
+import { GC_USER_ID } from '../../constants/settings'
 
 export default {
   name: 'UserTable',

@@ -14,6 +14,8 @@
               <div>|</div>
             </div>
             <router-link to="/admin">Admin Panel</router-link>
+            <div>|</div>
+            <router-link to="/newusers">New User Accounts</router-link>
           </div>
         </div>
         <!-- Login buttons   -->

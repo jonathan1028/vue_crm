@@ -20,7 +20,7 @@
 
 <script>
 import UserTable from './UserTable'
-import { ALL_USERS_QUERY } from '../constants/graphql'
+import { ALL_USERS_QUERY } from '../../constants/graphql'
 // import { ALL_PEOPLE_QUERY, NEW_PEOPLE_SUBSCRIPTION } from '../constants/graphql'
 
 export default {
@@ -56,7 +56,5 @@ export default {
 </script>
 
 <style>
-.search{
-  width: 38%;
-}
+
 </style>
