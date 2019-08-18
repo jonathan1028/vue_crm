@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { ALL_LINKS_QUERY, CREATE_LINK_MUTATION } from '../constants/graphql'
+import { ALL_LINKS_QUERY, CREATE_LINK_MUTATION } from '../../constants/graphql'
 import { GC_USER_ID } from '../constants/settings'
 
 export default {

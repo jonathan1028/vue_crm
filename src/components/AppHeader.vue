@@ -1,125 +1,80 @@
 <template>
   <div class="header">
-    <div class="header-content">
-        <div class="main-nav">
-          <!-- Logo -->
-          <div class="logo">Agilent CRM</div>
-          <!-- Main navigation -->
-          <div class="nav-buttons">
-            <!-- Logged in navigation -->
-            <div class="authenticated-nav" v-if="userId">
-              <router-link to="/people">People</router-link>
-              <div>|</div>
-              <router-link to="/opportunities">Opportunities</router-link>
-              <div>|</div>
-            </div>
-            <router-link to="/admin">Admin Panel</router-link>
-            <div>|</div>
-            <router-link to="/newusers">New User Accounts</router-link>
-          </div>
-        </div>
-        <!-- Login buttons   -->
-        <div class="login">
-          <a>
-            <div v-if="userId" @click="logout()">Logout</div>
-            <router-link v-else to="/login">Login</router-link>
-          </a>
-        </div>
+    <!-- <div class="logo"></div> -->
+    <!-- Main navigation -->
+    <div class="nav-buttons">
+      <router-link to="/">Home</router-link>
+      <div class="grid-item sizing">|</div>
+      <router-link to="/people">Contacts</router-link>
+      <div class="sizing">|</div>
+      <router-link to="/learn">Accounting</router-link>
+      <div class="sizing">|</div>
+      <router-link to="/admin">Admin</router-link>
     </div>
   </div>
 </template>
 
 <script>
-import { GC_USER_ID, GC_AUTH_TOKEN } from '../constants/settings'
-
 export default {
-  name: 'AppHeader',
-  computed: {
-    // You first retrieve the userId from this.$root.$data.
-    // If the userId is not available, the submit-button won’t be rendered anymore.
-    // That way you make sure only authenticated users can create new links
-    userId () {
-      return this.$root.$data.userId
-    }
-  },
-  methods: {
-    logout () {
-      localStorage.removeItem(GC_USER_ID)
-      localStorage.removeItem(GC_AUTH_TOKEN)
-      this.$root.$data.userId = localStorage.getItem(GC_USER_ID)
-    }
-  }
+  name: 'AppHeader'
 }
 </script>
 
-<style>
-.header{
-  position: fixed;
-  width: 100%;
-  height: 40px;
-  background-color: white;
-  top: 0;
-  -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-  -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-  box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+<style lang="scss" scoped>
+.header {
+  align-self: center;
+  //display: flex;
+  justify-self: start;
+  .nav-buttons {
+    //border: 1px solid red;
+    margin: 2vw;
+    display: grid;
+    grid-template-rows: 100%;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    width: 50vw;
+    align-items: center;
+    color: #3273dc;
+    text-decoration: none;
+  }
+  .grid-item {
+    //width: auto;
+  }
+  .nav-buttons a{
+    color: #3273dc;
+    font-size: 3vh;
+    text-decoration: none;
+  }
+  .nav-buttons a:visited{
+    color: #3273dc;
+    text-decoration: none;
+  }
+  .nav-buttons a:hover{
+    color: var(--theme-color2);
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    text-decoration: none;
+  }
+  .sizing {
+    font-size: 3vh;
+  }
 }
-.header-content{
-  max-width: 90%;
-  height: 100%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.logo{
-  margin-right: 1em;
-}
-.main-nav{
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-.nav-buttons{
-  display: flex;
-  justify-content:space-between;
-  align-items: center;
-  color: #3273dc;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.nav-buttons a{
-  color: #3273dc;
-  text-decoration: none;
-}
-
-.nav-buttons a:visited{
-  color: #3273dc;
-  text-decoration: none;
-}
-
-.nav-buttons a:hover{
-  color: gray;
-  text-decoration: none;
-}
-
-.authenticated-nav{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.login a{
-   color: #3273dc;
-   text-decoration: none;
-}
-
-.login a:visited{
-  color: #3273dc;
-  text-decoration: none;
-}
-
-.login a:hover{
-  color: gray;
+//////////////////////////////////////////////////// Mobile ///////////////////////////////////////////////
+@media only screen and (max-width: 600px) {
+  .header {
+    .nav-buttons {
+      justify-self: start;
+      //border: 1px solid red;
+      // display: grid;
+      // grid-template-rows: 100%;
+      // grid-template-columns: auto auto auto auto auto auto auto;
+      width: 90vw;
+      margin-left: 5vw;
+      margin-right: 5vw;
+      // align-items: center;
+      // color: #3273dc;
+      // text-decoration: none;
+    }
+  }
 }
 </style>

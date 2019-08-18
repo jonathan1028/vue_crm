@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { ALL_LINKS_QUERY, NEW_LINKS_SUBSCRIPTION, NEW_VOTES_SUBSCRIPTION } from '../constants/graphql'
+import { ALL_LINKS_QUERY, NEW_LINKS_SUBSCRIPTION, NEW_VOTES_SUBSCRIPTION } from '../../constants/graphql'
 import LinkItem from './LinkItem'
 import { LINKS_PER_PAGE } from '../constants/settings'
 import _ from 'lodash'

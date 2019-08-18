@@ -16,7 +16,7 @@
 <script>
 import { timeDifferenceForDate } from '../utils'
 import { GC_USER_ID, LINKS_PER_PAGE } from '../constants/settings'
-import { ALL_LINKS_QUERY, CREATE_VOTE_MUTATION } from '../constants/graphql'
+import { ALL_LINKS_QUERY, CREATE_VOTE_MUTATION } from '../../constants/graphql'
 
 export default {
   name: 'LinkItem',
